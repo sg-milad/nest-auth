@@ -7,6 +7,7 @@
 
 ```bash
 $ npm install
+$ cp .env.example .env
 $ docker-compose up
 $ npm run start:dev
 ```
