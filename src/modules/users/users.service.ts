@@ -46,7 +46,6 @@ export class UsersService {
     if(updateUser.affected===1){
       return {message:"seccussfuly update"}
     }
-    console.log(updateUser);
     
     return updateUser;
   } catch (err) {
