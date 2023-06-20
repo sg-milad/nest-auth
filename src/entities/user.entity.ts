@@ -1,4 +1,4 @@
-import { Role } from 'src/constants/role.enum';
+import { Role } from '../constants/role.enum';
 import {
   Column,
   CreateDateColumn,
