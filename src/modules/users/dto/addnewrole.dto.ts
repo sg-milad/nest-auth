@@ -1,5 +1,5 @@
 import { IsEnum, IsNumber } from "class-validator";
-import { Role } from "src/constants/role.enum";
+import { Role } from "../../../constants/role.enum";
 
 export class AddNewRoleDto {
     @IsEnum(Role)
