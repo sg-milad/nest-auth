@@ -19,13 +19,10 @@ export class UsersService {
   }
   async createUser(userDto: UserDto) {
    try {
-    
-   
     const user = this.userRepository.create(userDto);
     const saveUser = await this.userRepository.save(user);
     return saveUser;
   } catch (error) {
-   console.log();
    throw new InternalServerErrorException 
   }
   }
