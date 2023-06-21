@@ -14,8 +14,8 @@ import { LocalAuthGuard } from '../../guards/local-auth.guard';
 import { JwtAuthGuard } from '../../guards/jwt-auth.guard';
 import { UserDto } from './dto/user.dto';
 import { UsersService } from '../users/users.service';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
-
+import { ApiBearerAuth, ApiBody, ApiHeader, ApiTags } from '@nestjs/swagger';
+@ApiBearerAuth()
 @Controller()
 export class AuthController {
   constructor(
@@ -51,9 +51,17 @@ export class AuthController {
     return createdUser;
   }
 
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'Bearer token',
+    example: 'Bearer your-token-here',
+  })
+  @ApiBearerAuth('Authorization')
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
+    console.log(req.user);
+    
     return req.user;
   }
 
