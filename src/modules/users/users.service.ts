@@ -12,9 +12,11 @@ export class UsersService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
   async findOne(username: string): Promise<IUser | undefined> {
-    const findUser = this.userRepository.findOne({
+    const findUser =await this.userRepository.findOne({
       where: { username: username },
     });
+    console.log(findUser);
+    
     return findUser;
   }
   async createUser(userDto: UserDto) {
@@ -23,6 +25,8 @@ export class UsersService {
     const saveUser = await this.userRepository.save(user);
     return saveUser;
   } catch (error) {
+    // console.log(error);
+    
    throw new InternalServerErrorException 
   }
   }

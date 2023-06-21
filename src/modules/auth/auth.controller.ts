@@ -14,6 +14,7 @@ import { LocalAuthGuard } from '../../guards/local-auth.guard';
 import { JwtAuthGuard } from '../../guards/jwt-auth.guard';
 import { UserDto } from './dto/user.dto';
 import { UsersService } from '../users/users.service';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 @Controller()
 export class AuthController {
@@ -23,14 +24,30 @@ export class AuthController {
   ) {}
 
   @UseGuards(LocalAuthGuard)
+  @ApiTags('auth/login')
+  @ApiBody({
+    description: 'List of cats',
+    type: [UserDto],
+    required:true,
+  })
   @Post('auth/login')
   async login(@Request() req) {
     return this.authService.login(req.user);
   }
 
+  @ApiTags('auth/register')
+  @ApiBody({
+    description: 'List of cats',
+    type: [UserDto],
+    required:true,
+  })
   @Post('auth/register')
   async register(@Body() userDto: UserDto) {
+    console.log("user",userDto);
+    
     const createdUser = await this.usersService.createUser(userDto);
+    console.log(createdUser);
+    
     return createdUser;
   }
 

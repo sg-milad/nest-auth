@@ -6,7 +6,7 @@ import { setupSwagger } from './setup-swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({
-    whitelist: true,
+    whitelist: false,
   }));
 
   if (!(process.env.NODE_ENV === 'production')) {
