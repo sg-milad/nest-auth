@@ -27,7 +27,7 @@ export class AuthController {
   @ApiTags('auth/login')
   @ApiBody({
     description: 'List of cats',
-    type: [UserDto],
+    type: UserDto,
     required:true,
   })
   @Post('auth/login')
@@ -38,7 +38,7 @@ export class AuthController {
   @ApiTags('auth/register')
   @ApiBody({
     description: 'List of cats',
-    type: [UserDto],
+    type: UserDto,
     required:true,
   })
   @Post('auth/register')
